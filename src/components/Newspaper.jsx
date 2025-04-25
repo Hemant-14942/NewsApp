@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import Cards from "./Cards";
 import axios from "axios";
-
+import { API_KEY } from "../../constants";
 const Newspaper = () => {
   const [search, setSearch] = useState("");
   const [articles, setArticles] = useState([]);
 
-  const apiKey = "6f538b2b0358a5845800013546774dfe";
-
   const getSearch = async () => {
     try {
       const resp = await axios.get(
-        `http://api.mediastack.com/v1/news?access_key=${apiKey}&keywords=${search}&languages=en`
+        `http://api.mediastack.com/v1/news?access_key=${API_KEY}&keywords=${search}&languages=en`
       );
       setArticles(resp.data.data);
     } catch (error) {
